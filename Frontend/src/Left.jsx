@@ -20,8 +20,8 @@ function Left() {
 
   return (
     <div className='w-70'>
-        <div className='flex h-10 items-center font-semibold text-xl text-green-500'><img className='w-4 mr-2' src="src/assets/email.png"></img>DashBoard</div>
-        <div className='flex h-10 items-center font-semibold text-xl text-red-500'><img className='w-4 mr-2' src="src/assets/finish.png"></img>Recent Activity</div>
+        <div className='flex h-10 items-center font-semibold text-xl text-green-500'><img className='w-4 mr-2' src="/src/assets/email.png"></img>DashBoard</div>
+        <div className='flex h-10 items-center font-semibold text-xl text-red-500'><img className='w-4 mr-2' src="/src/assets/finish.png"></img>Recent Activity</div>
 
         <div className='flex justify-between mr-5 px-2 bg-gray-300'>
             <div>GROUPS</div>

@@ -5,7 +5,7 @@ import DashBoard from './DashBoard.jsx'
 import Left from './Left.jsx'
 import Right from './Right.jsx'
 import CreateGroup from './CreateGroup.jsx'
-import GroupDetails from './GroupDetails.jsx'
+import GroupDetailPage from './GroupDetailPage.jsx'
 function App() {
   return (
     <>
@@ -13,16 +13,16 @@ function App() {
     <Routes>
       <Route path='/dashboard'  element={
         <div className='w-screen flex justify-left'>
-        <Left/>
-        <DashBoard/>
-        <Right/>
+          <Left/>
+          <DashBoard/>
+          <Right/>
       </div>
       } />
       <Route path="/groups/new" element={<CreateGroup />} />
       <Route path="/groups/:group_id" element={
         <div className='w-screen flex justify-left'>
           <Left/>
-          <GroupDetails />
+          <GroupDetailPage />
         </div>
         } />
     </Routes>

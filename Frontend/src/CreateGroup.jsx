@@ -18,14 +18,19 @@ function CreateGroup() {
 
   const handleSave = async () => {
     try {
+      const uniqueNames = new Set(
+        members.map((m) => m.name).filter(Boolean)
+      )
+      uniqueNames.add("you")
+  
       const res = await axios.post("http://localhost:8000/groups", {
         name: groupName,
-        user_ids: members.map((m) => m.name).filter(Boolean)  // remove empty names
+        user_ids: Array.from(uniqueNames),
       })
-
+  
       console.log("Group created:", res.data)
-      navigate(`/groups/${res.data.id}`)  // or wherever
-    } catch (err) {
+      navigate(`/groups/${res.data.id}`)
+    }  catch (err) {
       console.error("Error creating group:", err)
     }
   }
