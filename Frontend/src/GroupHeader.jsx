@@ -12,6 +12,7 @@ function GroupHeader({ name, users, groupId, onExpenseAdded }) {
       console.log("Expense added:", res.data)
       setShowModal(false)
       if (onExpenseAdded) onExpenseAdded() // Notify parent to refetch
+      window.location.reload()  
     } catch (err) {
       console.error("Error saving expense:", err)
     }

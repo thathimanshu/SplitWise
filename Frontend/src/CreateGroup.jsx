@@ -18,14 +18,17 @@ function CreateGroup() {
 
   const handleSave = async () => {
     try {
-      const uniqueNames = new Set(
-        members.map((m) => m.name).filter(Boolean)
-      )
-      uniqueNames.add("you")
-  
+      const names = ["you"]
+
+      members.forEach((m) => {
+        if (m.name && !names.includes(m.name)) {
+          names.push(m.name)
+        }
+      })
+
       const res = await axios.post("http://localhost:8000/groups", {
         name: groupName,
-        user_ids: Array.from(uniqueNames),
+        user_ids: names,
       })
   
       console.log("Group created:", res.data)

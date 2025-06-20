@@ -1,25 +1,27 @@
-from sqlalchemy import Column, Integer, String, ForeignKey, Float
+from sqlalchemy import Column, Integer, String, ForeignKey, Float, Table
 from sqlalchemy.orm import relationship
 from .database import Base
+
+# Association Table
+group_user = Table(
+    "group_user",
+    Base.metadata,
+    Column("group_id", Integer, ForeignKey("groups.id")),
+    Column("user_id", Integer, ForeignKey("users.id"))
+)
 
 class Group(Base):
     __tablename__ = "groups"
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, unique=True)
-    users = relationship("User", back_populates="group")
-    # Add if you want reverse access
+    users = relationship("User", secondary=group_user, back_populates="groups")
     expenses = relationship("Expense", back_populates="group", cascade="all, delete-orphan")
 
 class User(Base):
     __tablename__ = "users"
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String)
-    group_id = Column(Integer, ForeignKey("groups.id"))
-
-    group = relationship("Group", back_populates="users")
-    # Optional: expenses_paid = relationship("Expense", backref="payer")
-
-# 🧱 Add these at the bottom:
+    groups = relationship("Group", secondary="group_user", back_populates="users")
 
 class Expense(Base):
     __tablename__ = "expenses"

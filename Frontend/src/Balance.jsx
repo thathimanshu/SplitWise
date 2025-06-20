@@ -1,19 +1,31 @@
 import React from 'react'
 import PayCard from './PayCard.jsx'
-function Balance({color}) {
+
+function Balance({ color, transactions, type }) {
+  // type = "owe" or "owed"
+  const filteredTxns = transactions.filter((txn) =>
+    type === "owe" ? txn.from.toLowerCase() === "you" : txn.to.toLowerCase() === "you"
+  )
+
   return (
-    <>
     <div className='w-full min-h-screen'>
       <div className={`p-3 text-gray-400 text-2xl ${color === "green" ? "text-left ml-2" : "text-right mr-2"}`}>
-        {color === "red" ? "You owe" : "You are owed"}
-        <hr></hr>
+        {type === "owe" ? "You owe" : "You are owed"}
+        <hr />
       </div>
 
       <div>
-        <PayCard color={color} />
+        {filteredTxns.map((txn, idx) => (
+          <PayCard
+            key={idx}
+            color={color}
+            from={txn.from}
+            to={txn.to}
+            amount={txn.amount}
+          />
+        ))}
       </div>
     </div>
-    </>
   )
 }
 

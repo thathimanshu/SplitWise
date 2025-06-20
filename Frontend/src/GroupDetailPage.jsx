@@ -28,7 +28,7 @@ function GroupDetails() {
   if (!group) return <p className="p-6 text-red-600">Group not found</p>
 
   return (
-    <div className="px-6 py-4 border w-175">
+    <div className="px-6 py-4 w-175">
       <GroupHeader
         name={group.name}
         users={group.users}
