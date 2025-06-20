@@ -1,95 +1,12 @@
-# 💸 Splitwise Clone — Full Stack App
+# React + Vite
 
-This is a simplified **Splitwise clone** built using:
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-- **Frontend**: React + TailwindCSS  
-- **Backend**: FastAPI  
-- **Database**: PostgreSQL (via Docker)  
-- **ORM**: SQLAlchemy
+Currently, two official plugins are available:
 
----
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## 🚀 Getting Started (Docker Only)
+## Expanding the ESLint configuration
 
-### 🔧 Prerequisites
-
-- [Docker](https://www.docker.com/) installed
-
----
-
-### ⚙️ Setup & Run
-
-```bash
-# Clone the repo
-git clone https://github.com/your-username/splitwise-clone.git
-cd splitwise-clone
-
-# Build and start the app
-docker-compose up --build
-
-
-Frontend: http://localhost:3000
-
-Backend (API): http://localhost:8000
-
- API Endpoints
-🔹 POST /groups/
-
-Create a new group.
-
-Request:
-{
-  "name": "Trip Goa",
-  "user_ids": ["you", "Alice", "Bob"]
-}
-
-🔹 GET /groups/
-
-Get all groups.
-🔹 GET /groups/{group_id}
-
-Get group details with members.
-🔹 GET /groups/{group_id}/balances
-
-Get simplified net balances within a group.
-
-[
-  { "from": "Alice", "to": "you", "amount": 50 },
-  { "from": "Bob", "to": "Alice", "amount": 30 }
-]
-
-🔹 POST /expenses/
-
-Add a new expense to a group.
-
-{
-  "description": "Dinner",
-  "amount": 120,
-  "paid_by": 1,
-  "group_id": 2,
-  "splits": [
-    { "user_id": 1, "amount": 40 },
-    { "user_id": 2, "amount": 40 },
-    { "user_id": 3, "amount": 40 }
-  ]
-}
-
-🔹 GET /balances/users/{user_id}
-
-See all balances across all groups involving this user.
-
-[
-  { "from": "you", "to": "Alice", "amount": 25 },
-  { "from": "Bob", "to": "you", "amount": 35 }
-]
-
-🔐 Assumptions
-
-    "you" is the default user (user ID 1)
-
-    No auth implemented (demo-only)
-
-    Group members are fixed once created
-
-    Netting logic is handled server-side
-
+If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
