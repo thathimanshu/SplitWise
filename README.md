@@ -21,8 +21,8 @@ This is a simplified **Splitwise clone** built using:
 
 ```bash
 # Clone the repo
-git clone https://github.com/your-username/splitwise-clone.git
-cd splitwise-clone
+git clone https://github.com/thathimanshu/splitwise.git
+cd splitwise
 
 # Build and start the app
 docker-compose up --build
