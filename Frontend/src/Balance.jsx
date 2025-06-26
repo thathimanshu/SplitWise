@@ -2,9 +2,11 @@ import React from 'react'
 import PayCard from './PayCard.jsx'
 
 function Balance({ color, transactions, type }) {
-  // type = "owe" or "owed"
+  // Determine if the transaction is relevant based on 'you'
   const filteredTxns = transactions.filter((txn) =>
-    type === "owe" ? txn.from.toLowerCase() === "you" : txn.to.toLowerCase() === "you"
+    type === "owe"
+      ? txn.from.toLowerCase() === "you"
+      : txn.to.toLowerCase() === "you"
   )
 
   return (
@@ -15,15 +17,19 @@ function Balance({ color, transactions, type }) {
       </div>
 
       <div>
-        {filteredTxns.map((txn, idx) => (
-          <PayCard
-            key={idx}
-            color={color}
-            from={txn.from}
-            to={txn.to}
-            amount={txn.amount}
-          />
-        ))}
+        {filteredTxns.length > 0 ? (
+          filteredTxns.map((txn, idx) => (
+            <PayCard
+              key={idx}
+              color={color}
+              from={txn.from}
+              to={txn.to}
+              amount={txn.amount}
+            />
+          ))
+        ) : (
+          <div className='text-center text-gray-400 mt-4'>No transactions</div>
+        )}
       </div>
     </div>
   )
